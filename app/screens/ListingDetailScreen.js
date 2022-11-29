@@ -38,7 +38,9 @@ const styles = StyleSheet.create({
         fontSize: 24
     },
     userContainer: {
-        marginVertical: 40,
+        marginVertical: 20,
+        left: -20,
+
     }
 
 })

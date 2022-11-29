@@ -8,9 +8,10 @@ export default function Card({ title, subtitle, image }) {
     return (
         <View style={styles.card}>
             {/* resizeMode is used to contain the image withi a given area */}
-            <Image resizeMode='cover' style={styles.image} source={image} />
-            {/* <View style={styles.imageView}> */}
-            {/* </View> */}
+            <Image resizeMode='cover' source={image} style={styles.image} />
+            {/* <View style={styles.imageView}>
+
+            </View> */}
             <View style={styles.detailContainer}>
                 <AppText style={styles.title}>{title}</AppText>
                 <AppText style={styles.subTitle}>{subtitle}</AppText>
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: colors.white,
         marginBottom: 20,
-        overflow: 'hidden',
+        overflow: "hidden",
     },
     detailContainer: {
         padding: 20
@@ -37,12 +38,12 @@ const styles = StyleSheet.create({
     image: {
         width: "100%",
         height: 200,
-        flex: 1,
+        // flex: 1,
     },
-    // imageView: {
-    //     width: "100%",
-    //     height: 200,
-    // },
+    imageView: {
+        width: "100%",
+        height: 200,
+    },
     subTitle: {
         color: colors.secondary
     },

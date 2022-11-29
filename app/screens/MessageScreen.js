@@ -80,7 +80,7 @@ const Messagescreen = () => {
                 title={item.title}
                 subTitle={item.description}
                 image={item.image}
-                onPress={() => console.log()}
+                onPress={() => console.log(item)}
                 rightSwipeActions={() => <Listitemdeleteaction onPress={() => handleDelete(item)} />}
             />
         );

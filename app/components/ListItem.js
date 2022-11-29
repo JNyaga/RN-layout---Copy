@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableHighlight, Text } from 'react-native';
 import colors from '../config/colors';
-import Swipeable from 'react-native-gesture-handler/Swipeable';//installed using expo check verions of lower version
+import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';//installed using expo check verions of lower version
 
 
 
@@ -18,18 +18,21 @@ import AppText from './AppText';
 
 const Listitem = ({ title, subTitle, image, IconComponent, onPress, rightSwipeActions }) => {
     return (
-        <Swipeable renderRightActions={rightSwipeActions}>
-            <TouchableHighlight underlayColor={colors.lightGrey} onPress={onPress}>
-                <View style={styles.container}>
-                    {IconComponent}
-                    {image && <Image style={styles.image} source={image} />}
-                    <View style={styles.detailsContainer}>
-                        <AppText style={styles.title}>{title}</AppText>
-                        {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
+        <GestureHandlerRootView>
+            <Swipeable renderRightActions={rightSwipeActions}>
+                <TouchableHighlight activeOpacity={0.7} underlayColor={colors.lightGrey} onPress={onPress}>
+                    <View style={styles.container}>
+                        {IconComponent}
+                        {image && <Image resizeMode='contain' style={styles.image} source={image} />}
+                        <View style={styles.detailsContainer}>
+                            <AppText style={styles.title}>{title}</AppText>
+                            {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
+                        </View>
                     </View>
-                </View>
-            </TouchableHighlight>
-        </Swipeable>
+                </TouchableHighlight>
+            </Swipeable>
+
+        </GestureHandlerRootView>
     );
 }
 
