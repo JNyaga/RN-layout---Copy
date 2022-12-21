@@ -1,22 +1,32 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
+import { Image } from 'react-native-expo-image-cache'
 
 import colors from '../config/colors'
 import AppText from './AppText'
 
-export default function Card({ title, subtitle, image }) {
+export default function Card({ title, subtitle, imageUrl, onPress, thumbnailUrl }) {
     return (
-        <View style={styles.card}>
-            {/* resizeMode is used to contain the image withi a given area */}
-            <Image resizeMode='cover' source={image} style={styles.image} />
-            {/* <View style={styles.imageView}>
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={styles.card}>
+                {/* resizeMode is used to contain the image withi a given area */}
+                {/* <Image resizeMode='cover' source={{ uri: imageUrl }} style={styles.image} />react native image */}
+                <Image
+                    resizeMode='cover'
+                    preview={{ uri: thumbnailUrl }}
+                    uri={imageUrl}
+                    style={styles.image}
+                    tint="light"
+                />
+                {/* <View style={styles.imageView}>
 
             </View> */}
-            <View style={styles.detailContainer}>
-                <AppText style={styles.title}>{title}</AppText>
-                <AppText style={styles.subTitle}>{subtitle}</AppText>
+                <View style={styles.detailContainer}>
+                    <AppText style={styles.title}>{title}</AppText>
+                    <AppText style={styles.subTitle}>{subtitle}</AppText>
+                </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     )
 }
 

@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "RN-layout",
-    "slug": "RN-layout",
+    "name": "RN-layout-Copy",
+    "slug": "RN-layout-Copy",
     "version": "1.0.0",
-    "orientation": "default",
+    "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "splash": {
       "image": "./app/assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {

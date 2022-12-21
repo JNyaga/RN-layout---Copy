@@ -9,13 +9,13 @@ import Listitemdeleteaction from './../components/ListItemDeleteAction';
 const initialMessages = [
     {
         id: 1,
-        title: "T1",
-        description: "D1",
+        title: "JoelNyaga",
+        description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime praesentium magnam sapiente adipisci error voluptatem ipsum culpa vel. Molestias ipsum, eaque quos voluptas recusandae sint porro cumque quis nam explicabo repellendus odit. Vitae voluptatum laboriosam quia eveniet atque quaerat, esse, quod et expedita dolores pariatur, iusto nam fugit cupiditate perspiciatis!",
         image: require("../assets/face.jpg"),
     },
     {
         id: 2,
-        title: "T2",
+        title: "Nuriom Mnamu",
         description: "D2",
         image: require("../assets/face.jpg"),
     },
@@ -94,20 +94,7 @@ const Messagescreen = () => {
                 ItemSeparatorComponent={Listitemseparator}
                 refreshing={refreshing}
                 onRefresh={() => {
-                    setMessages([
-                        {
-                            id: 1,
-                            title: "T1",
-                            description: "D1",
-                            image: require("../assets/face.jpg"),
-                        },
-                        {
-                            id: 2,
-                            title: "T2",
-                            description: "D2",
-                            image: require("../assets/face.jpg"),
-                        },
-                    ])
+                    setMessages(initialMessages)
                 }}
             />
         </Screen>

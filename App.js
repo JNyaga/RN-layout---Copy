@@ -1,65 +1,71 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { useDimensions, useDeviceOrientation } from "@react-native-community/hooks"
-import WelcomeScreen from './app/screens/WelcomeScreen';
-import Viewimagescreen from './app/screens/ViewImageScreen';
-import Listingdetailscreen from './app/screens/ListingDetailScreen';
+import { NavigationContainer } from "@react-navigation/native";
+import { AppLoading } from "expo";
 
-import AppText from './app/components/AppText';
-import Accountscreen from './app/screens/AccountScreen';
-import AppButton from './app/components/AppButton';
-import Appicon from './app/components/AppIcon';
-import Card from './app/components/Card';
-import Listitem from './app/components/ListItem';
-import Messagescreen from './app/screens/MessageScreen';
-import Screen from './app/components/Screen';
-import Listingscreen from './app/screens/ListingScreen';
-import TxtInputtest from './tests/txtInputtest';
-import AppTextInput from './app/components/AppTextInput';
-import SwitchTest from './tests/SwitchTest';
-import AppPicker from './app/components/AppPicker';
-import TestAppPicker from './tests/TestAppPicker';
+
+import ImagePickerTest from './tests/ImagePickerTest';
+import Listingdetailscreen from './app/screens/ListingDetailScreen';
+import ImageInputListTest from './tests/ImageInputListTest';
+import ListingEditScreen from './app/screens/ListingEditScreen';
+import NavigationTest from './tests/NavigationTest';
+import WelcomeScreen from './app/screens/WelcomeScreen';
+import RegisterScreen from './app/screens/RegisterScreen';
+import OfflineSupportTest from './tests/OfflineSupportTest';
+import StorageAsyncTest from './tests/StorageAsyncTest';
+import OfflineNotice from './app/components/OfflineNotice';
+import AuthContext from './app/auth/context';
+import AuthNavigator from './app/navigation/AuthNavigator';
+import AppNavigator from './app/navigation/AppNavigator';
+import navigationTheme from './app/navigation/navigationTheme';
+import authStorage from './app/auth/storage';
+import PushNotificationTest from './tests/PushNotificationTest';
+import { navigationRef } from './app/navigation/rootNavigation';
+
+
 
 export default function App() {
+  const [user, setUser] = useState();
+  const [isReady, setIsReady] = useState(false)
+
+  //retore token when app restarts  (in authStorage)
+  const restoreUser = async () => {
+    const user = await authStorage.getUser();
+    if (user) setUser(user)
+
+  }
+
+  useEffect(() => {
+    restoreUser();
+  }, [])
+
+  // if (!isReady)
+  //   return (
+  //     <AppLoading startAsync={restoreToken} onFinish={() => setIsReady(true)} />
+  //   );
   // console.log(Dimensions.get("screen"));
   console.log(useDimensions(), useDeviceOrientation())
   console.log(require("./app/assets/streetguy-unsplash.jpg"))
   return (
-    <Screen>
-      <TestAppPicker />
-      <AppTextInput icon={"email"} placeholder={"Email"} />
-      <SwitchTest />
-    </Screen>
-  )
-  // <TxtInputtest />
-  // <Messagescreen />
-  // <Listingscreen />
-  // <Accountscreen />
-  //   <Screen>
-  //   < Listitem title={'joel'} subTitle={'james'} IconComponent={<Appicon name={'email'} />} />
-  // </Screen>
-  // <Appicon
-  //   name="email"
-  //   size={10}
-  //   backgroundColor="red"
-  //   iconColor="white"
-  // />
-  // return (
-  //   <>
-  //    <Messagescreen />
-  //    {/* <Viewimagescreen /> */}
-  //   {/* <AppText>this is a text</AppText> */}
-  //   {/* <WelcomeScreen /> */}
-  // {/* <View style={{ backgroundColor: '#f8f4f4',
-  //     padding:20,
-  //     paddingTop:100,}}>
-  //       <Card title={"title"} subtitle="20" image={require("./app/assets/streetguy-unsplash.jpg")} />
-  // </View> */}
-  //   {/* <Listingdetailscreen /> */}
-  //   <StatusBar style="auto" />
-  //   </>
-  // );
+    <AuthContext.Provider value={{ user, setUser }}>
+      <OfflineNotice />
+      <NavigationContainer ref={navigationRef} theme={navigationTheme}>
+        {user ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+      {/* <NavigationTest /> */}
+      {/* // <ImageInputListTest />
+    // <ListingEditScreen />
+    // <OfflineSupportTest />
+    // <StorageAsyncTest />
+
+    // <RegisterScreen />
+    // <WelcomeScreen /> */}
+    </AuthContext.Provider>
+    // <PushNotificationTest />
+  );
+
 }
 
 const styles = StyleSheet.create({

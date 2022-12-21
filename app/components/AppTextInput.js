@@ -8,11 +8,11 @@ import defaultStlyes from './../config/styles';
 
 
 
-const AppTextInput = ({ icon, ...otherProps }) => {
+const AppTextInput = ({ icon, width = "100%", ...otherProps }) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
             {icon && <MaterialCommunityIcons name={icon} size={28} color={colors.medium} style={styles.icon} />}
-            <TextInput style={defaultStlyes.text} {...otherProps} />
+            <TextInput style={[defaultStlyes.text, { flex: 1 }]} {...otherProps} />
         </View>
     )
 }
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.lightGrey,
         borderRadius: 25,
         flexDirection: "row",
-        width: '100%',
+        // width: '100%',
         padding: 15,
         marginVertical: 10
     },

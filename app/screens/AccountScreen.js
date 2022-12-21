@@ -7,6 +7,10 @@ import Screen from '../components/Screen';
 import colors from '../config/colors';
 import Appicon from './../components/AppIcon';
 import Listitemseparator from './../components/ListItemSeparator';
+import routes from '../navigation/routes';
+import AuthContext from './../auth/context';
+import authStorage from '../auth/storage';
+import useAuth from './../auth/useAuth';
 
 
 const menuItems = [
@@ -23,36 +27,57 @@ const menuItems = [
         icon: {
             name: "email",
             backgroundColor: colors.secondary
-        }
+        },
+        targetScreen: routes.MESSAGES,
     },
 
 ]
 
-const Accountscreen = () => {
+const Accountscreen = ({ navigation }) => {
+    const { user, setUser, logOut } = useAuth();//from context that is
+    // const handleLogout = () => {
+    //     setUser(null)
+    //     authStorage.removeToken();
+    // }
     return (
         <Screen style={styles.screen}>
             <View style={styles.container}>
                 <Listitem
-                    title={"Joel Nyaga"}
-                    subTitle={" subtitle"}
+                    title={user.name}
+                    subTitle={user.email}
                     image={require("../assets/face.jpg")}
                 />
             </View>
             <View style={styles.container}>
                 <FlatList
                     data={menuItems}
-                    keyExtractor={menuItem => menuItem.title}
-                    renderItem={({ item }) =>
+                    keyExtractor={(menuItem) => menuItem.title}
+                    renderItem={({ item }) => (
                         <Listitem
                             title={item.title}
-                            IconComponent={<Appicon name={item.icon.name} backgroundColor={item.icon.backgroundColor} />}
+                            IconComponent={
+                                <Appicon
+                                    name={item.icon.name}
+                                    backgroundColor={item.icon.backgroundColor}
+                                />
+                            }
+                            onPress={() => navigation.navigate(item.targetScreen)}
                         />
-                    }
+                    )}
                     ItemSeparatorComponent={Listitemseparator}
                 />
             </View>
-            <Listitem title={"Log Out"}
-                IconComponent={<Appicon name={'logout'} backgroundColor={colors.danger} iconColor={colors.white} />}
+
+            <Listitem
+                title={"Log Out"}
+                IconComponent={
+                    <Appicon
+                        name={"logout"}
+                        backgroundColor={colors.danger}
+                        iconColor={colors.white}
+                    />
+                }
+                onPress={() => logOut()}
             />
         </Screen>
     );

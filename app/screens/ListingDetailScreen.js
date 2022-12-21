@@ -1,33 +1,55 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, TouchableHighlight } from 'react-native';
+import { Image } from 'react-native-expo-image-cache';
 import AppText from '../components/AppText';
 import colors from '../config/colors';
 
 import Listitem from '../components/ListItem';
+import ContactSellerForm from './../components/ContactSellerForm';
+import routes from '../navigation/routes';
 
-const Listingdetailscreen = () => {
+const Listingdetailscreen = ({ route, navigation }) => {
+    const listing = route.params
     return (
-        <View>
-            <Image style={styles.image} source={require("../assets/jacket.jpg")} />
+        <KeyboardAvoidingView
+            behavior="position"
+            keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+        >
+            <TouchableHighlight activeOpacity={0.7} underlayColor={colors.lightGrey} onPress={() => navigation.navigate(routes.VIEWING_SCREEN, listing)}>
+                <Image
+                    style={styles.image}
+                    preview={{ uri: listing.images[0].thumbnailUrl }}
+                    uri={listing.images[0].url}
+                    tint="light" />
+            </TouchableHighlight>
+
             <View style={styles.detailsContainer}>
-                <AppText style={styles.title}> Yellow jacket miss</AppText>
-                <AppText style={styles.subTitle}>10</AppText>
+                <AppText style={styles.title}> {listing.title}</AppText>
+                <AppText style={styles.subTitle}>{listing.price}</AppText>
                 <View style={styles.userContainer}>
                     <Listitem image={require("../assets/face.jpg")} title="The Face" subTitle="5 Listings" />
                 </View>
+                <ContactSellerForm listing={listing} />
             </View>
-        </View>
+            {/* <View style={styles.mapview} ></View> */}
+        </KeyboardAvoidingView>
     );
 }
 
 const styles = StyleSheet.create({
     image: {
         width: "100%",
-        height: 300,
+        height: 200,
     },
     detailsContainer: {
         padding: 20,
     },
+    // mapview: {
+    //     width: "100%",
+    //     height: 200,
+    //     backgroundColor: "blue",
+    //     // paddingTop: 10
+    // },
     subTitle: {
         color: colors.secondary,
         opacity: 0.8,
