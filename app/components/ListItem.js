@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Image, TouchableHighlight, Text } from 'react-native';
-import colors from '../config/colors';
+import { View, StyleSheet, TouchableHighlight, Text } from 'react-native';
+import { Image } from 'react-native-expo-image-cache'
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';//installed using expo check verions of lower version
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+import colors from '../config/colors';
 
 
 
@@ -18,14 +20,20 @@ import AppText from './AppText';
 //     )
 // }
 
-const Listitem = ({ title, subTitle, image, IconComponent, onPress, rightSwipeActions }) => {
+const Listitem = ({ title, subTitle, imageUrl, IconComponent, onPress, rightSwipeActions, thumbnailUrl }) => {
     return (
         <GestureHandlerRootView>
             <Swipeable renderRightActions={rightSwipeActions}>
                 <TouchableHighlight activeOpacity={0.7} underlayColor={colors.lightGrey} onPress={onPress}>
                     <View style={styles.container}>
                         {IconComponent}
-                        {image && <Image resizeMode='contain' style={styles.image} source={image} />}
+                        {imageUrl && <Image resizeMode='contain'
+                            style={styles.image}
+                            uri={imageUrl}
+                            preview={{ uri: thumbnailUrl }}
+                            tint="light"
+                        />}
+
                         <View style={styles.detailsContainer}>
                             <AppText style={styles.title} numberOfLines={1} >{title}</AppText>
                             {subTitle && <AppText style={styles.subTitle} numberOfLines={2} >{subTitle}</AppText>}
@@ -52,9 +60,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     image: {
-        width: 70,
-        height: 70,
-        borderRadius: 35,
+        width: 80,
+        height: 80,
+        borderRadius: 40,
         marginRight: 10,
     },
     subTitle: {

@@ -27,7 +27,11 @@ const Listingdetailscreen = ({ route, navigation }) => {
                 <AppText style={styles.title}> {listing.title}</AppText>
                 <AppText style={styles.subTitle}>{listing.price}</AppText>
                 <View style={styles.userContainer}>
-                    <Listitem image={require("../assets/face.jpg")} title="The Face" subTitle="5 Listings" />
+                    <Listitem
+                        imageUrl={listing.userId.image.url}
+                        thumbnailUrl={listing.userId.image.thumbnailUrl}
+                        title={listing.userId.name} subTitle="5 Listings"
+                    />
                 </View>
                 <ContactSellerForm listing={listing} />
             </View>

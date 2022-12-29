@@ -3,14 +3,8 @@ import React, { useState } from 'react'
 import * as Yup from "yup"
 
 import Screen from './../components/Screen';
-// import AppForm from '../components/forms/AppForm';
-// import AppFormField from '../components/forms/AppFormField';
-// import SubmitButton from '../components/forms/SubmitButton';
 import { ErrorMessages, AppForm, AppFormField, SubmitButton } from '../components/forms';
 import authApi from '../api/auth';
-// import jwtDecode from 'jwt-decode';
-// import AuthContext from './../auth/context';
-// import authStorage from '../auth/storage';
 import useAuth from '../auth/useAuth';
 
 

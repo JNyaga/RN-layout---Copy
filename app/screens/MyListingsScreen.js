@@ -11,24 +11,11 @@ import AppButton from './../components/AppButton';
 import AppActivityIndicator from './../components/AppActivityIndicator';
 import useApi from './../hooks/useApi';
 
-// const listings = [
-//     {
-//         id: 1,
-//         title: 'Yellow Jacket for sale',
-//         price: 1000,
-//         image: require('../assets/jacket.jpg')
-//     },
-//     {
-//         id: 2,
-//         title: 'Couch ',
-//         price: 100,
-//         image: require('../assets/couch.jpg')
-//     }
-// ]
-const Listingscreen = ({ navigation }) => {
+
+const MyListingsScreen = ({ navigation }) => {
     //request: loadListings> renaming request to loadListings functions
-    const { data: listings, error, loading, request: loadListings } = useApi(listingsApi.getListings)
-    // console.log(listings[0]
+    const { data: listings, error, loading, request: loadListings } = useApi(listingsApi.getUserListings)
+    // console.log(listings[0])
     const [refreshing, setRefreshing] = useState(false);
 
 
@@ -73,4 +60,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Listingscreen;
+export default MyListingsScreen;

@@ -4,6 +4,8 @@ const endpoint = '/listings';
 
 const getListings = () => client.get(endpoint)
 
+const getUserListings = () => client.get("/my/listings")
+
 const addListing = (listing, onUploadProgress) => {
     // senf form data to api
     const data = new FormData()
@@ -36,4 +38,5 @@ const addListing = (listing, onUploadProgress) => {
 export default {
     addListing,
     getListings,
+    getUserListings,
 };

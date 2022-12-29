@@ -8,8 +8,6 @@ import colors from '../config/colors';
 import Appicon from './../components/AppIcon';
 import Listitemseparator from './../components/ListItemSeparator';
 import routes from '../navigation/routes';
-import AuthContext from './../auth/context';
-import authStorage from '../auth/storage';
 import useAuth from './../auth/useAuth';
 
 
@@ -19,6 +17,11 @@ const menuItems = [
         icon: {
             name: "format-list-bulleted",
             backgroundColor: colors.primary
+        },
+        targetScreen: routes.FEED,
+        parameters: {
+            screen: routes.MY_LISTINGS,
+            params: null
         }
     },
 
@@ -29,6 +32,7 @@ const menuItems = [
             backgroundColor: colors.secondary
         },
         targetScreen: routes.MESSAGES,
+        parameters: null,
     },
 
 ]
@@ -45,7 +49,9 @@ const Accountscreen = ({ navigation }) => {
                 <Listitem
                     title={user.name}
                     subTitle={user.email}
-                    image={require("../assets/face.jpg")}
+                    imageUrl={user.image.url}
+                    thumbnailUrl={user.image.thumbnailUrl}
+                    onPress={() => navigation.navigate(routes.ACCOUNT_EDIT, user)}
                 />
             </View>
             <View style={styles.container}>
@@ -61,7 +67,7 @@ const Accountscreen = ({ navigation }) => {
                                     backgroundColor={item.icon.backgroundColor}
                                 />
                             }
-                            onPress={() => navigation.navigate(item.targetScreen)}
+                            onPress={() => navigation.navigate(item.targetScreen, item.parameters)}
                         />
                     )}
                     ItemSeparatorComponent={Listitemseparator}

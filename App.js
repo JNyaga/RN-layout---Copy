@@ -23,6 +23,9 @@ import navigationTheme from './app/navigation/navigationTheme';
 import authStorage from './app/auth/storage';
 import PushNotificationTest from './tests/PushNotificationTest';
 import { navigationRef } from './app/navigation/rootNavigation';
+import TestReplyMessage from './tests/TestReplyMessage';
+import Messagescreen from './app/screens/MessageScreen';
+import AccountEditScreen from './app/screens/AccountEditScreen';
 
 
 
@@ -54,14 +57,17 @@ export default function App() {
       <NavigationContainer ref={navigationRef} theme={navigationTheme}>
         {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
+      {/* <TestReplyMessage /> */}
+      {/* <Messagescreen /> */}
       {/* <NavigationTest /> */}
       {/* // <ImageInputListTest />
     // <ListingEditScreen />
     // <OfflineSupportTest />
     // <StorageAsyncTest />
-
+    
     // <RegisterScreen />
     // <WelcomeScreen /> */}
+      {/* <AccountEditScreen /> */}
     </AuthContext.Provider>
     // <PushNotificationTest />
   );
