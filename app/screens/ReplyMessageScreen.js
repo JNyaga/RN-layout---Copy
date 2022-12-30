@@ -57,9 +57,9 @@ const ReplyMessageScreen = ({ route, navigation }) => {
 
             <View style={styles.message}>
                 <AppText style={styles.title} >
-                    Name:{messageItem.fromUserId.name}
+                    Name:{messageItem.fromUserId.name.toUpperCase()}
                 </AppText>
-                <AppText>
+                <AppText style={styles.content}>
                     {messageItem.content}
                 </AppText>
 
@@ -95,6 +95,12 @@ const validationSchema = Yup.object().shape({
 export default ReplyMessageScreen
 
 const styles = StyleSheet.create({
+    content: {
+        color: 'dark',
+        paddingRight: 10,
+        width: '100%',
+        backgroundColor: colors.medium,
+    },
     message: {
         // justifyContent: "center",
         alignItems: "center",
@@ -104,12 +110,14 @@ const styles = StyleSheet.create({
         marginTop: 20,
         borderRadius: 15,
         margin: 20,
-
     },
 
     title: {
         alignSelf: "flex-start",
         marginTop: 10,
+        marginLeft: 10,
+        paddingBottom: 20
     },
+
 
 })

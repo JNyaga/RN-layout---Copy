@@ -5,6 +5,7 @@ import Listingdetailscreen from './../screens/ListingDetailScreen';
 import routes from "./routes";
 import Viewimagescreen from './../screens/ViewImageScreen';
 import MyListingsScreen from './../screens/MyListingsScreen';
+import MapViewScreen from './../screens/MapViewScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,10 @@ const FeedNavigator = () => (
             component={MyListingsScreen}
         />
         <Stack.Screen name={routes.VIEWING_SCREEN} component={Viewimagescreen} />
+
+        <Stack.Screen name={routes.MAP_VIEW} component={MapViewScreen}
+            options={({ route }) => ({ title: route.params.userId.name.toUpperCase() + ' ' + 'Location' })}
+        />
     </Stack.Navigator>
 );
 

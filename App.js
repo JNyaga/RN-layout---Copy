@@ -26,6 +26,7 @@ import { navigationRef } from './app/navigation/rootNavigation';
 import TestReplyMessage from './tests/TestReplyMessage';
 import Messagescreen from './app/screens/MessageScreen';
 import AccountEditScreen from './app/screens/AccountEditScreen';
+import MapViewScreen from './app/screens/MapViewScreen';
 
 
 
@@ -57,6 +58,7 @@ export default function App() {
       <NavigationContainer ref={navigationRef} theme={navigationTheme}>
         {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
+      {/* <MapViewScreen /> */}
       {/* <TestReplyMessage /> */}
       {/* <Messagescreen /> */}
       {/* <NavigationTest /> */}

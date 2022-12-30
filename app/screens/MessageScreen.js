@@ -91,7 +91,7 @@ const Messagescreen = ({ navigation }) => {
         return (
             <>
                 <Listitem
-                    title={item.fromUserId.name}
+                    title={item.fromUserId.name.toUpperCase()}
                     subTitle={item.content}
                     imageUrl={item.fromUserId
                         .image.url}

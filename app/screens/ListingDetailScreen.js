@@ -30,7 +30,8 @@ const Listingdetailscreen = ({ route, navigation }) => {
                     <Listitem
                         imageUrl={listing.userId.image.url}
                         thumbnailUrl={listing.userId.image.thumbnailUrl}
-                        title={listing.userId.name} subTitle="5 Listings"
+                        title={listing.userId.name.toUpperCase()} subTitle="LOCATION"
+                        onPress={() => navigation.navigate(routes.MAP_VIEW, listing)}
                     />
                 </View>
                 <ContactSellerForm listing={listing} />

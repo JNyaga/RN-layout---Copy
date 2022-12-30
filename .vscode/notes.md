@@ -169,3 +169,11 @@ npx expo install expo-notifications
 ```bash
 npx expo install expo-device
 ```
+
+> _NB_ Remember you installed zoom image
+
+#### React NAtive mapview
+
+```bash
+npx expo install react-native-maps
+```

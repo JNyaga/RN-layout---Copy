@@ -47,7 +47,7 @@ const Accountscreen = ({ navigation }) => {
         <Screen style={styles.screen}>
             <View style={styles.container}>
                 <Listitem
-                    title={user.name}
+                    title={user.name.toUpperCase()}
                     subTitle={user.email}
                     imageUrl={user.image.url}
                     thumbnailUrl={user.image.thumbnailUrl}
